@@ -1,0 +1,13 @@
+{
+  "name": "z_lift_bar",
+  "version": "1.0.0",
+  "description": "H5 page for Android WebView embedding",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

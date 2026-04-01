@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, height=80, initial-scale=1.0, user-scalable=no">
+  <title>Lift Bar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 1280px;
+      height: 80px;
+      overflow: hidden;
+    }
+
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 1280px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .test-text {
+      font-size: 32px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="test-text">测试页面 - 1280 x 80 | 设备码: <span id="deviceCode">未获取</span></span>
+  </div>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const deviceCode = urlParams.get('deviceCode');
+    if (deviceCode) {
+      document.getElementById('deviceCode').textContent = deviceCode;
+    }
+  </script>
+</body>
+</html>
