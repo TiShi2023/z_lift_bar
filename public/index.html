@@ -15,41 +15,317 @@
       width: 1280px;
       height: 80px;
       overflow: hidden;
+      background-color: #F0F3FD;
     }
 
     body {
-      background-color: #000000;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      align-items: stretch;
+      gap: 6px;
+      padding: 6px 8px;
     }
 
-    .container {
-      width: 1280px;
-      height: 80px;
+    .card {
+      background-color: #ffffff;
+      border-radius: 6px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      padding: 0 10px;
+      height: 100%;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     }
 
-    .test-text {
-      font-size: 32px;
+    /* ===== 基础信息区块 ===== */
+    .card-basic {
+      gap: 8px;
+      flex: 1 1 0;
+    }
+
+    .card-title {
+      color: #000000;
+      font-size: 13px;
+      line-height: 1.4;
+      white-space: nowrap;
+      flex-shrink: 0;
       font-weight: bold;
+    }
+
+    .elevator-badge {
+      background-color: #6a3fc8;
+      color: #ffffff;
+      border-radius: 5px;
+      padding: 4px 7px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1.4;
+      flex-shrink: 0;
+    }
+
+    .basic-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .basic-info-row {
+      color: #000000;
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 230px;
+      font-weight: bold;
+    }
+
+    .basic-info-row span {
+      color: #000000;
+    }
+
+    /* ===== 运行强度区块 ===== */
+    .card-intensity {
+      gap: 8px;
+      flex: 1 1 0;
+    }
+
+    .intensity-level {
+      background-color: #6a3fc8;
+      color: #ffffff;
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 14px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .chart-area {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      height: 48px;
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 11px,
+        rgba(150, 150, 150, 0.3) 11px,
+        rgba(150, 150, 150, 0.3) 12px
+      );
+    }
+
+    .bar-group {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .bar {
+      width: 12px;
+      border-radius: 3px 3px 0 0;
+    }
+
+    .bar-orange { background-color: #e8873a; }
+    .bar-blue   { background-color: #4a90d9; }
+
+    /* ===== 不文明行为区块 ===== */
+    .card-uncivilized {
+      gap: 10px;
+      flex: 1 1 0;
+    }
+
+    .card-title-large {
+      color: #000000;
+      font-size: 13px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: bold;
+    }
+
+    .uncivilized-items {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .uncivilized-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #6a3fc8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .icon-circle.orange {
+      background-color: #d9531e;
+    }
+
+    .item-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .item-label {
+      color: #000000;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .item-value {
+      color: #000000;
+      font-size: 16px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .item-value .unit {
+      font-size: 11px;
+      font-weight: normal;
+    }
+
+    .divider {
+      width: 1px;
+      height: 40px;
+      background-color: #444444;
+      flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <span class="test-text">测试页面 - 1280 x 80 | 设备码: <span id="deviceCode">未获取</span></span>
+  <!-- 基础信息 -->
+  <div class="card card-basic">
+    <div class="card-title">基础<br>信息</div>
+    <div class="elevator-badge" id="elevatorBadge">16栋<br>1号梯</div>
+    <div class="basic-info">
+      <div class="basic-info-row">电梯注册号：<span id="registerId">3454545436354136</span></div>
+      <div class="basic-info-row">电梯地址：<span id="address">上海宝院区黑丰路567号</span></div>
+      <div class="basic-info-row">举报电话：<span id="reportPhone"></span></div>
+    </div>
   </div>
+
+  <!-- 运行强度 -->
+  <div class="card card-intensity">
+    <div class="card-title">运行<br>强度</div>
+    <div class="intensity-level" id="intensityLevel">高</div>
+    <div class="chart-area" id="chartArea">
+      <div class="bar-group"><div class="bar bar-orange" style="height:28px"></div><div class="bar bar-blue" style="height:22px"></div></div>
+      <div class="bar-group"><div class="bar bar-orange" style="height:20px"></div><div class="bar bar-blue" style="height:32px"></div></div>
+      <div class="bar-group"><div class="bar bar-orange" style="height:36px"></div><div class="bar bar-blue" style="height:18px"></div></div>
+      <div class="bar-group"><div class="bar bar-orange" style="height:16px"></div><div class="bar bar-blue" style="height:40px"></div></div>
+      <div class="bar-group"><div class="bar bar-orange" style="height:42px"></div><div class="bar bar-blue" style="height:26px"></div></div>
+      <div class="bar-group"><div class="bar bar-orange" style="height:30px"></div><div class="bar bar-blue" style="height:36px"></div></div>
+      <div class="bar-group"><div class="bar bar-orange" style="height:24px"></div><div class="bar bar-blue" style="height:30px"></div></div>
+    </div>
+  </div>
+
+  <!-- 不文明行为 -->
+  <div class="card card-uncivilized">
+    <div class="card-title-large">不文明<br>行为</div>
+    <div class="uncivilized-items">
+      <div class="uncivilized-item">
+        <div class="icon-circle">🛵</div>
+        <div class="item-info">
+          <div class="item-label">电动车入梯</div>
+          <div class="item-value" id="ebike">123<span class="unit">%</span></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="uncivilized-item">
+        <div class="icon-circle orange">✋</div>
+        <div class="item-info">
+          <div class="item-label">拦门</div>
+          <div class="item-value" id="blockDoor">12,333<span class="unit">次</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const deviceCode = urlParams.get('deviceCode');
-    if (deviceCode) {
-      document.getElementById('deviceCode').textContent = deviceCode;
+    const deviceCode = urlParams.get('deviceCode') || '111';
+
+    async function fetchElevatorData() {
+      try {
+        const response = await fetch(`/api/elevator-data?deviceCode=${encodeURIComponent(deviceCode)}`);
+        const result = await response.json();
+        console.log('API Response:', result);
+
+        if (result && result.data) {
+          updateUI(result.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch elevator data:', error);
+      }
     }
+
+    function updateUI(data) {
+      const info = data.elevatorInfoVo || {};
+      const alarm = data.alarmStatisticsVo || {};
+
+      if (info.elevatorName) {
+        document.getElementById('elevatorBadge').innerHTML = info.elevatorName.replace(/(\d+号)/, '<br>$1');
+      }
+      if (info.registerCode) {
+        document.getElementById('registerId').textContent = info.registerCode;
+      }
+      if (info.provinceName || info.townName || info.streetName) {
+        const addr = (info.provinceName || '') + (info.townName || '') + (info.streetName || '');
+        document.getElementById('address').textContent = addr;
+      }
+      if (info.maintainPhone) {
+        document.getElementById('reportPhone').textContent = info.maintainPhone;
+      }
+
+      if (alarm.electromobile !== undefined) {
+        document.getElementById('ebike').innerHTML = alarm.electromobile + '<span class="unit">次</span>';
+      }
+      if (alarm.obstruction !== undefined) {
+        document.getElementById('blockDoor').innerHTML = alarm.obstruction + '<span class="unit">次</span>';
+      }
+
+      if (data.recentStatistics && data.recentStatistics.length > 0) {
+        updateChart(data.recentStatistics);
+      }
+    }
+
+    function updateChart(stats) {
+      const chartArea = document.getElementById('chartArea');
+      const maxHeight = 48;
+      let maxVal = 1;
+      stats.forEach(s => {
+        const v1 = parseInt(s.presentCounterValue) || 0;
+        const v2 = parseInt(s.doorOpenCount) || 0;
+        if (v1 > maxVal) maxVal = v1;
+        if (v2 > maxVal) maxVal = v2;
+      });
+
+      let html = '';
+      stats.forEach(s => {
+        const h1 = Math.max(4, Math.round((parseInt(s.presentCounterValue) || 0) / maxVal * maxHeight));
+        const h2 = Math.max(4, Math.round((parseInt(s.doorOpenCount) || 0) / maxVal * maxHeight));
+        html += `<div class="bar-group"><div class="bar bar-orange" style="height:${h1}px"></div><div class="bar bar-blue" style="height:${h2}px"></div></div>`;
+      });
+      chartArea.innerHTML = html;
+    }
+
+    fetchElevatorData();
   </script>
 </body>
 </html>
