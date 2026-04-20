@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1280, height=80, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Lift Bar</title>
   <style>
     * {
@@ -12,8 +12,8 @@
     }
 
     html, body {
-      width: 1280px;
-      height: 80px;
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
       background-color: #F0F3FD;
     }
@@ -41,6 +41,7 @@
     .card-basic {
       gap: 8px;
       flex: 1 1 0;
+      justify-content: space-between;
     }
 
     .card-title {
@@ -69,6 +70,7 @@
       flex-direction: column;
       justify-content: center;
       gap: 2px;
+      flex: 1;
     }
 
     .basic-info-row {
@@ -77,7 +79,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 230px;
       font-weight: bold;
     }
 
@@ -138,6 +139,7 @@
     .card-uncivilized {
       gap: 10px;
       flex: 1 1 0;
+      justify-content: space-between;
     }
 
     .card-title-large {
@@ -151,7 +153,8 @@
     .uncivilized-items {
       display: flex;
       align-items: center;
-      gap: 12px;
+      flex: 1;
+      justify-content: space-around;
     }
 
     .uncivilized-item {
